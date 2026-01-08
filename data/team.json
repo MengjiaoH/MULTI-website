@@ -94,7 +94,12 @@
       "titles": [
         "Postdoctoral Researcher, Scientific Computing and Imaging Institute, University of Utah"
       ],
-      "email": "touermi@sci.utah.edu"
+      "email": "touermi@sci.utah.edu",
+      "authorVariants":[
+        "T. A. J. Ouermi",
+        "Timbwaga A. J. Ouermi",
+        "Timbwaga Ouermi"
+      ]
     },
     {
       "id": "mhan",
@@ -104,7 +109,11 @@
       "titles": [
         "Postdoctoral Researcher, Mathematics and Computer Science Division, Argonne National Laboratory"
       ],
-      "email": "mhan@anl.gov"
+      "email": "mhan@anl.gov",
+      "authorVariants": [
+        "M. Han",
+        "Mengjiao Han"
+      ]
     },
     {
       "id": "tpat",
@@ -114,7 +123,11 @@
       "titles": [
         "PhD Student, Scientific Computing and Imaging Institute, University of Utah"
       ],
-      "email": "tpat@sci.utah.edu"
+      "email": "tpat@sci.utah.edu",
+      "authorVariants": [
+        "T. Patel",
+        "Tark Patel"
+      ]
     },
     {
       "id": "nmarshak",
@@ -124,7 +137,11 @@
       "titles": [
         "PhD Student, Scientific Computing and Imaging Institute, University of Utah"
       ],
-      "email": "nmarshak@sci.utah.edu"
+      "email": "nmarshak@sci.utah.edu",
+      "authorVariants": [
+        "N. X. Marshak",
+        "Nathan X. Marshak"
+      ]
     }
   ]
 }
