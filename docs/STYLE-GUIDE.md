@@ -7,8 +7,26 @@ This guide explains how to modify the visual appearance and layout of the websit
 | File | Purpose |
 |------|---------|
 | `css/variables.css` | Design tokens (colors, fonts, spacing) |
-| `css/main.css` | All component and layout styles |
-| `index.html` | Page structure (rarely needs changes) |
+| `css/multi.css` | All component and layout styles (multi- prefixed) |
+| `index.html` | Development shell (loads content.html) |
+| `content.html` | Main content for WordPress embedding |
+
+## Naming Convention
+
+All CSS classes and IDs use the `multi-` prefix for namespace isolation when embedded in WordPress:
+
+```css
+/* Classes */
+.multi-container { }
+.multi-team-card { }
+.multi-team-card__photo { }
+.multi-team-card--selected { }
+
+/* IDs */
+#multi-main { }
+#multi-team-carousel { }
+#multi-publications-list { }
+```
 
 ## Quick Style Changes
 
@@ -25,7 +43,7 @@ All colors are defined as CSS custom properties. To change a color, modify the v
   --color-primary-dark: #890000; /* Hover state */
 
   /* Background colors */
-  --color-background: #E2E6E6;   /* Page background */
+  --color-background: #F5F5F5;   /* Page background */
   --color-surface: #FFFFFF;      /* Card backgrounds */
 
   /* Text colors */
@@ -89,15 +107,15 @@ If changing fonts, update the Google Fonts link in `index.html`:
 }
 ```
 
-**File:** `css/main.css`
+**File:** `css/multi.css`
 
 ```css
-.site-header {
+.multi-site-header {
   height: var(--header-height);
 }
 
 /* Offset for fixed header */
-main {
+.multi-main {
   padding-top: var(--header-height);
 }
 ```
@@ -115,23 +133,23 @@ main {
 
 ### Section Spacing
 
-**File:** `css/main.css`
+**File:** `css/multi.css`
 
 ```css
-.section {
-  padding: var(--space-xl) 0;
-}
-
-.section--intro {
+.multi-section {
   padding: var(--space-lg) 0;
 }
 
-.section--team {
-  padding: var(--space-xl) 0;
+.multi-section--intro {
+  padding: var(--space-lg) 0;
 }
 
-.section--publications {
-  padding: var(--space-xl) 0;
+.multi-section--team {
+  padding: var(--space-lg) 0;
+}
+
+.multi-section--publications {
+  padding: var(--space-lg) 0;
 }
 ```
 
@@ -141,11 +159,11 @@ main {
 
 ### Team Cards
 
-**File:** `css/main.css`
+**File:** `css/multi.css`
 
 ```css
 /* Card container */
-.team-card {
+.multi-team-card {
   width: 280px;
   padding: var(--space-lg);
   background: var(--color-surface);
@@ -156,19 +174,19 @@ main {
 }
 
 /* Hover state */
-.team-card:hover {
+.multi-team-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
 
 /* Selected state */
-.team-card--selected {
+.multi-team-card--selected {
   border: 2px solid var(--color-primary);
   box-shadow: var(--shadow-lg);
 }
 
 /* Photo */
-.team-card__photo {
+.multi-team-card__photo {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -176,29 +194,35 @@ main {
 }
 
 /* Name */
-.team-card__name {
+.multi-team-card__name {
   font-family: var(--font-heading);
   font-size: var(--font-size-lg);
   margin-top: var(--space-md);
 }
 
 /* Position */
-.team-card__position {
+.multi-team-card__position {
   color: var(--color-text-light);
   font-size: var(--font-size-sm);
+}
+
+/* Affiliation */
+.multi-team-card__affiliation {
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+  font-style: italic;
 }
 ```
 
 ### Team Carousel
 
-**File:** `css/main.css`
+**File:** `css/multi.css`
 
 ```css
-.team-carousel {
+.multi-team-carousel {
   display: flex;
   gap: var(--space-lg);
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   padding: var(--space-md) 0;
 
   /* Hide scrollbar but allow scrolling */
@@ -206,67 +230,82 @@ main {
   -ms-overflow-style: none;
 }
 
-.team-carousel::-webkit-scrollbar {
+.multi-team-carousel::-webkit-scrollbar {
   display: none;
 }
 
-.team-card {
-  scroll-snap-align: start;
+.multi-team-card {
   flex-shrink: 0;
+}
+```
+
+### Team List View
+
+**File:** `css/multi.css`
+
+```css
+.multi-team-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.multi-team-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+}
+
+.multi-team-list-item--selected {
+  background: var(--color-background);
+  border-left: 3px solid var(--color-primary);
 }
 ```
 
 ### Publication List
 
-**File:** `css/main.css`
+**File:** `css/multi.css`
 
 ```css
-.publication-item {
+.multi-publication-item {
   padding: var(--space-md);
   border-bottom: 1px solid var(--color-border);
 }
 
-.publication-item:last-child {
+.multi-publication-item:last-child {
   border-bottom: none;
 }
 
-.publication-item__title {
+.multi-publication-item__title {
   font-family: var(--font-heading);
   font-size: var(--font-size-lg);
   color: var(--color-text);
   margin-bottom: var(--space-xs);
 }
 
-.publication-item__title a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.publication-item__title a:hover {
-  color: var(--color-primary);
-}
-
-.publication-item__authors {
+.multi-publication-item__authors {
   color: var(--color-text-light);
   font-size: var(--font-size-sm);
 }
 
-.publication-item__venue {
+.multi-publication-item__venue {
   font-style: italic;
   color: var(--color-text-light);
 }
 
-.publication-item__year {
-  font-weight: 600;
-}
-
-.publication-item__links {
+.multi-publication-item__links {
   margin-top: var(--space-sm);
 }
 
-.publication-item__links a {
-  margin-right: var(--space-sm);
-  color: var(--color-primary);
+.multi-publication-item__links a,
+.multi-publication-item__links button {
+  margin-right: var(--space-md);
   font-size: var(--font-size-sm);
 }
 ```
@@ -275,39 +314,28 @@ main {
 
 ## Responsive Breakpoints
 
-**File:** `css/main.css`
+**File:** `css/multi.css`
 
 ```css
 /* Mobile first - base styles apply to all sizes */
-
-/* Small devices (phones, 576px and up) */
-@media (min-width: 576px) {
-  .team-card {
-    width: 240px;
-  }
-}
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   :root {
     --container-padding: 2rem;
   }
-
-  .team-card {
-    width: 280px;
-  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .container {
+  .multi-container {
     max-width: 960px;
   }
 }
 
 /* Extra large devices (1200px and up) */
 @media (min-width: 1200px) {
-  .container {
+  .multi-container {
     max-width: 1140px;
   }
 }
@@ -318,14 +346,20 @@ main {
 ```css
 /* Stack team cards vertically on mobile */
 @media (max-width: 575px) {
-  .team-carousel {
+  .multi-team-carousel {
     flex-direction: column;
     align-items: center;
   }
 
-  .team-card {
+  .multi-team-card {
     width: 100%;
     max-width: 320px;
+  }
+
+  .multi-team-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
   }
 }
 ```
@@ -336,13 +370,13 @@ main {
 
 ### HTML Structure
 
-**File:** `index.html`
+**File:** `content.html`
 
 ```html
-<section class="section section--newsection" aria-label="New Section">
-  <div class="container">
-    <h2 class="section__title">Section Title</h2>
-    <div class="section__content">
+<section class="multi-section multi-section--newsection" aria-label="New Section">
+  <div class="multi-container">
+    <h2>Section Title</h2>
+    <div class="multi-section__content">
       <!-- Content here -->
     </div>
   </div>
@@ -351,21 +385,21 @@ main {
 
 ### CSS
 
-**File:** `css/main.css`
+**File:** `css/multi.css`
 
 ```css
 /* ========================================
    NEW SECTION
    ======================================== */
-.section--newsection {
+.multi-section--newsection {
   background: var(--color-background);
 }
 
-.section--newsection .section__title {
+.multi-section--newsection h2 {
   /* Custom title styles */
 }
 
-.section--newsection .section__content {
+.multi-section__content {
   /* Content layout */
 }
 ```
@@ -384,26 +418,18 @@ main {
 }
 ```
 
-**File:** `css/main.css`
+**File:** `css/multi.css`
 
 ```css
 /* Smooth hover transitions */
-.team-card {
+.multi-team-card {
   transition: transform var(--transition-base),
               box-shadow var(--transition-base);
 }
 
 /* Filter animation */
-.publication-item {
+.multi-publication-item {
   transition: opacity var(--transition-fast);
-}
-
-.publication-item--hidden {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
 }
 ```
 
@@ -425,24 +451,14 @@ main {
 
 ## Focus States (Accessibility)
 
-**File:** `css/main.css`
+**File:** `css/multi.css`
 
 ```css
 /* Global focus style */
 a:focus,
 button:focus,
 input:focus,
-.team-card:focus {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-/* Focus visible only for keyboard users */
-.team-card:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.team-card:focus-visible {
+.multi-team-card:focus {
   outline: 3px solid var(--color-primary);
   outline-offset: 2px;
 }
@@ -477,11 +493,11 @@ After modifying styles:
 
 ### Make team cards larger
 ```css
-.team-card {
+.multi-team-card {
   width: 320px;  /* was 280px */
 }
 
-.team-card__photo {
+.multi-team-card__photo {
   width: 150px;  /* was 120px */
   height: 150px;
 }
@@ -489,13 +505,13 @@ After modifying styles:
 
 ### Change publication list to cards
 ```css
-.publications-list {
+.multi-publications-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-lg);
 }
 
-.publication-item {
+.multi-publication-item {
   background: var(--color-surface);
   border-radius: var(--border-radius);
   padding: var(--space-lg);
@@ -506,7 +522,7 @@ After modifying styles:
 
 ### Add more space between sections
 ```css
-.section {
+.multi-section {
   padding: var(--space-xl) 0;  /* was space-lg */
   margin-bottom: var(--space-lg);
 }
@@ -514,7 +530,7 @@ After modifying styles:
 
 ### Make header sticky with shadow on scroll
 ```css
-.site-header {
+.multi-site-header {
   position: fixed;
   top: 0;
   width: 100%;
@@ -522,9 +538,9 @@ After modifying styles:
   transition: box-shadow var(--transition-base);
 }
 
-.site-header--scrolled {
+.multi-site-header--scrolled {
   box-shadow: var(--shadow-md);
 }
 ```
 
-(Requires JS to add `.site-header--scrolled` class on scroll)
+(Requires JS to add `.multi-site-header--scrolled` class on scroll)
