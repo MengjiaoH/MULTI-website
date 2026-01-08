@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Temporary development files
+tmp_dev/
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Node (if added later)
+node_modules/
