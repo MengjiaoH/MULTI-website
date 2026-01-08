@@ -34,18 +34,20 @@ Do not introduce:
 
 ```
 /multi-website/
-├── index.html           # Single HTML file
+├── index.html           # Development shell (loads content.html)
+├── content.html         # Main content for WordPress embedding
 ├── /css/
 │   ├── variables.css    # CSS custom properties only
-│   └── main.css         # All other styles
+│   └── multi.css        # All other styles (multi- prefixed)
 ├── /js/
-│   └── main.js          # All JavaScript
+│   └── multi.js         # All JavaScript
 ├── /data/
 │   ├── group.json       # Group info
 │   ├── team.json        # Team members
-│   └── publications.json # Publications
+│   └── publications.bib # Publications in BibTeX format
 └── /images/
     ├── /team/           # Member photos
+    ├── /research/       # Research banners
     └── /logos/          # Institution logos
 ```
 
@@ -54,18 +56,18 @@ Do not introduce:
 ### HTML
 
 ```html
-<!-- Use semantic elements -->
-<header role="banner">
-<main role="main">
-<section aria-label="Team Members">
-<article class="publication-card">
+<!-- Use semantic elements with multi- prefix -->
+<header class="multi-site-header" role="banner">
+<main id="multi-main" class="multi-main" role="main">
+<section class="multi-section" aria-label="Team Members">
+<article class="multi-publication-item">
 
 <!-- Include accessibility attributes -->
-<button aria-label="Filter by author" aria-pressed="false">
+<button class="multi-btn" aria-label="Filter by author" aria-pressed="false">
 <img alt="Dr. Jane Doe, Associate Professor">
 
 <!-- Data attributes for JS hooks -->
-<div class="team-card" data-member-id="chris-johnson">
+<div class="multi-team-card" data-member-id="chris-johnson">
 ```
 
 ### CSS
@@ -96,22 +98,28 @@ Do not introduce:
 }
 ```
 
-**File: main.css**
+**File: multi.css**
 ```css
 /* Section comment format */
 /* ========================================
    COMPONENT NAME
    ======================================== */
 
-/* BEM naming convention */
-.team-card { }
-.team-card__photo { }
-.team-card__name { }
-.team-card--selected { }
+/* BEM naming with multi- prefix for namespace isolation */
+/* This prevents conflicts when embedded in WordPress */
+.multi-team-card { }
+.multi-team-card__photo { }
+.multi-team-card__name { }
+.multi-team-card--selected { }
 
-/* Utility classes with u- prefix */
-.u-text-center { }
-.u-hidden { }
+/* All IDs also use multi- prefix */
+#multi-main { }
+#multi-team-carousel { }
+#multi-publications-list { }
+
+/* Utility classes with multi- prefix */
+.multi-sr-only { }      /* Screen reader only */
+.multi-container { }    /* Max-width container */
 ```
 
 ### JavaScript
@@ -126,13 +134,17 @@ function filterPublications() { }
 const DEBOUNCE_DELAY = 300;
 const SCROLL_OFFSET = 100;
 
-// jQuery elements: $ prefix
-const $teamContainer = $('#team-container');
-const $publicationsList = $('#publications-list');
+// jQuery elements: $ prefix with multi- IDs
+const $teamContainer = $('#multi-team-carousel');
+const $publicationsList = $('#multi-publications-list');
 
 // Event handlers: handle + Event + Target
 function handleClickTeamCard(e) { }
 function handleInputSearch(e) { }
+
+// CSS class selectors use multi- prefix
+$('.multi-team-card').on('click', ...);
+$('.multi-publication-item').each(...);
 ```
 
 **Module Pattern:**
@@ -152,30 +164,30 @@ const MULTI = {
     this.bindEvents();
   },
 
-  // Data loading
+  // Data loading (BibTeX for publications)
   loadData: function() {
     $.when(
       $.getJSON('data/group.json'),
       $.getJSON('data/team.json'),
-      $.getJSON('data/publications.json')
-    ).done((groupData, teamData, pubData) => {
+      $.get('data/publications.bib')
+    ).done((groupData, teamData, bibData) => {
       this.renderGroup(groupData[0]);
       this.state.team = teamData[0].team;
-      this.state.publications = pubData[0].publications;
+      this.state.publications = this.parseBibtex(bibData);
       this.renderTeam();
       this.renderPublications();
     });
   },
 
-  // Event binding
+  // Event binding (use multi- prefix for selectors)
   bindEvents: function() {
-    $(document).on('click', '.team-card', (e) => {
+    $(document).on('click', '.multi-team-card', (e) => {
       this.handleClickTeamCard(e);
     });
   }
 };
 
-$(document).ready(() => MULTI.init());
+// Initialization is called after content.html is loaded (see index.html)
 ```
 
 ## Data Loading Pattern
@@ -183,35 +195,33 @@ $(document).ready(() => MULTI.init());
 ```javascript
 /**
  * Load all data files and initialize the page
+ * Note: publications.bib is loaded as text, then parsed
  */
 loadData: function() {
-  const promises = [
+  $.when(
     $.getJSON('data/group.json'),
     $.getJSON('data/team.json'),
-    $.getJSON('data/publications.json')
-  ];
+    $.get('data/publications.bib')
+  ).done((groupResp, teamResp, bibResp) => {
+    // Extract data (jQuery wraps JSON in array)
+    const group = groupResp[0];
+    const team = teamResp[0].team;
+    const publications = this.parseBibtex(bibResp);
 
-  $.when(...promises)
-    .done((groupResp, teamResp, pubResp) => {
-      // Extract data (jQuery wraps in array)
-      const group = groupResp[0];
-      const team = teamResp[0].team;
-      const publications = pubResp[0].publications;
+    // Store in state
+    this.state.team = team;
+    this.state.publications = publications;
+    this.state.filteredPublications = [...publications];
 
-      // Store in state
-      this.state.team = team;
-      this.state.publications = publications;
-      this.state.filteredPublications = [...publications];
-
-      // Render
-      this.renderGroup(group);
-      this.renderTeam();
-      this.renderPublications();
-    })
-    .fail((error) => {
-      console.error('Failed to load data:', error);
-      this.showError('Unable to load page data. Please refresh.');
-    });
+    // Render
+    this.renderGroup(group);
+    this.renderTeam();
+    this.renderTeamList();
+    this.renderPublications();
+  }).fail((error) => {
+    console.error('Failed to load data:', error);
+    this.showError('Unable to load page data. Please refresh.');
+  });
 }
 ```
 
@@ -219,23 +229,25 @@ loadData: function() {
 
 ```javascript
 /**
- * Render team member cards
+ * Render team member cards (carousel view)
  */
 renderTeam: function() {
-  const $container = $('#team-container');
+  const $container = $('#multi-team-carousel');
 
   const html = this.state.team.map(member => `
-    <article class="team-card"
+    <article class="multi-team-card"
              data-member-id="${member.id}"
              tabindex="0"
              role="button"
              aria-label="View publications by ${member.name}">
-      <img class="team-card__photo"
-           src="${member.photo}"
+      <img class="multi-team-card__photo"
+           src="${member.photo || 'images/team/placeholder.jpg'}"
            alt="${member.name}, ${member.position}"
-           loading="lazy">
-      <h3 class="team-card__name">${member.name}</h3>
-      <p class="team-card__position">${member.position}</p>
+           loading="lazy"
+           onerror="this.src='images/team/placeholder.jpg'">
+      <h3 class="multi-team-card__name">${member.name}</h3>
+      <p class="multi-team-card__position">${member.position}</p>
+      <p class="multi-team-card__affiliation">${member.affiliation}</p>
     </article>
   `).join('');
 
@@ -283,17 +295,23 @@ filterByMember: function(memberId) {
 
 ```javascript
 /**
- * Bind all event handlers
+ * Bind all event handlers (all selectors use multi- prefix)
  */
 bindEvents: function() {
-  // Team card click
-  $(document).on('click', '.team-card', (e) => {
+  // Team card click (carousel)
+  $(document).on('click', '.multi-team-card', (e) => {
+    const memberId = $(e.currentTarget).data('member-id');
+    this.filterByMember(memberId);
+  });
+
+  // Team list item click
+  $(document).on('click', '.multi-team-list-item', (e) => {
     const memberId = $(e.currentTarget).data('member-id');
     this.filterByMember(memberId);
   });
 
   // Team card keyboard
-  $(document).on('keydown', '.team-card', (e) => {
+  $(document).on('keydown', '.multi-team-card, .multi-team-list-item', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       $(e.currentTarget).trigger('click');
@@ -302,7 +320,7 @@ bindEvents: function() {
 
   // Search input (debounced)
   let searchTimeout;
-  $('#search-input').on('input', (e) => {
+  $('#multi-search-input').on('input', (e) => {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
       this.handleSearch(e.target.value);
@@ -310,7 +328,7 @@ bindEvents: function() {
   });
 
   // Clear filter
-  $(document).on('click', '#clear-filter', () => {
+  $(document).on('click', '#multi-clear-filter', () => {
     this.filterByMember(null);
   });
 }
@@ -325,13 +343,12 @@ bindEvents: function() {
  */
 showError: function(message) {
   const $error = $(`
-    <div class="error-message" role="alert">
+    <div class="multi-error-message" role="alert">
       <p>${message}</p>
-      <button onclick="location.reload()">Refresh Page</button>
     </div>
   `);
 
-  $('main').prepend($error);
+  $('.multi-main').prepend($error);
 }
 ```
 
@@ -343,15 +360,13 @@ showError: function(message) {
  * @param {string} message - Announcement text
  */
 announce: function(message) {
-  let $announcer = $('#aria-announcer');
-
-  if (!$announcer.length) {
-    $announcer = $('<div id="aria-announcer" class="sr-only" aria-live="polite"></div>');
-    $('body').append($announcer);
-  }
-
-  $announcer.text(message);
+  $('#multi-aria-announcer').text(message);
 }
+```
+
+The announcer element is defined in content.html:
+```html
+<div id="multi-aria-announcer" class="multi-sr-only" aria-live="polite" aria-atomic="true"></div>
 ```
 
 ## Testing Checklist
