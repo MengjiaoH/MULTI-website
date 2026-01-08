@@ -116,20 +116,6 @@
       ]
     },
     {
-      "id": "tpat",
-      "name": "Tark Patel",
-      "position": "PhD Student",
-      "affiliation": "Scientific Computing and Imaging Institute, University of Utah",
-      "titles": [
-        "PhD Student, Scientific Computing and Imaging Institute, University of Utah"
-      ],
-      "email": "tpat@sci.utah.edu",
-      "authorVariants": [
-        "T. Patel",
-        "Tark Patel"
-      ]
-    },
-    {
       "id": "nmarshak",
       "name": "Nathan X. Marshak",
       "position": "PhD Student",
@@ -141,6 +127,20 @@
       "authorVariants": [
         "N. X. Marshak",
         "Nathan X. Marshak"
+      ]
+    },
+    {
+      "id": "tpat",
+      "name": "Tark Patel",
+      "position": "PhD Student",
+      "affiliation": "Scientific Computing and Imaging Institute, University of Utah",
+      "titles": [
+        "PhD Student, Scientific Computing and Imaging Institute, University of Utah"
+      ],
+      "email": "tpat@sci.utah.edu",
+      "authorVariants": [
+        "T. Patel",
+        "Tark Patel"
       ]
     }
   ]
