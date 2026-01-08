@@ -1,0 +1,447 @@
+/* ABOUTME: Main stylesheet for MULTI research group website.
+   ABOUTME: Contains reset, layout, and component styles. */
+
+/* ========================================
+   RESET & BASE
+   ======================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: var(--line-height-heading);
+  margin-top: 0;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-primary);
+  color: white;
+  z-index: 1000;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ========================================
+   LAYOUT
+   ======================================== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.section {
+  padding: var(--space-lg) 0;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  z-index: 100;
+}
+
+main {
+  padding-top: var(--header-height);
+}
+
+/* ========================================
+   TEAM CAROUSEL
+   ======================================== */
+.team-carousel {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: var(--space-md) 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.team-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================================
+   TEAM CARD
+   ======================================== */
+.team-card {
+  flex-shrink: 0;
+  width: 280px;
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.team-card--selected {
+  border: 2px solid var(--color-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+.team-card__photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.team-card__name {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  margin: var(--space-md) 0 var(--space-xs);
+}
+
+.team-card__position {
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+  margin: 0 0 var(--space-xs);
+}
+
+.team-card__affiliation {
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  margin: 0;
+}
+
+/* ========================================
+   MEMBER DETAIL
+   ======================================== */
+.member-detail-card {
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.member-detail__banner {
+  width: 100%;
+  height: 200px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.member-detail__banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member-detail__content {
+  padding: var(--space-lg);
+}
+
+.member-detail__header {
+  display: flex;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.member-detail__photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.member-detail__info {
+  flex: 1;
+}
+
+.member-detail__name {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+}
+
+.member-detail__titles {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}
+
+.member-detail__titles li {
+  margin-bottom: var(--space-xs);
+}
+
+.member-detail__contact {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.member-detail__contact a {
+  font-size: var(--font-size-sm);
+}
+
+.member-detail__background {
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+}
+
+.member-detail__interests h3 {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-sm);
+}
+
+.member-detail__interests ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.member-detail__interests li {
+  background: var(--color-background);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 575px) {
+  .member-detail__header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .member-detail__contact {
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   PUBLICATIONS
+   ======================================== */
+.search-box {
+  margin-bottom: var(--space-lg);
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+.search-box input:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.filter-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-surface);
+  border-left: 3px solid var(--color-primary);
+  margin-bottom: var(--space-md);
+}
+
+.results-count {
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+}
+
+.publications-list {
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.publication-item {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.publication-item:last-child {
+  border-bottom: none;
+}
+
+.publication-item__title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  margin: 0 0 var(--space-xs);
+}
+
+.publication-item__authors {
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+  margin: 0 0 var(--space-xs);
+}
+
+.publication-item__venue {
+  font-style: italic;
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+  margin: 0 0 var(--space-sm);
+}
+
+.publication-item__links a,
+.publication-item__links button {
+  margin-right: var(--space-md);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+  color: white;
+}
+
+.btn--text {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  padding: 0;
+}
+
+.btn--text:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.site-footer {
+  padding: var(--space-lg) 0;
+  background: var(--color-text);
+  color: white;
+}
+
+/* ========================================
+   FOCUS STATES
+   ======================================== */
+a:focus,
+button:focus,
+input:focus,
+.team-card:focus {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 575px) {
+  .team-carousel {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-card {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}

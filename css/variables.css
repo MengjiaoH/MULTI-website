@@ -1,0 +1,78 @@
+/* ABOUTME: CSS custom properties for design tokens.
+   ABOUTME: Edit these values to change colors, fonts, and spacing site-wide. */
+
+:root {
+  /* ========================================
+     COLORS - University of Utah Brand
+     ======================================== */
+  --color-primary: #BE0000;       /* Utah Red */
+  --color-primary-dark: #890000;  /* Red Rocks */
+  --color-secondary: #708E99;     /* Granite Peak */
+  --color-background: #E2E6E6;    /* Salt Flat Grey */
+  --color-surface: #FFFFFF;
+
+  /* ========================================
+     COLORS - Semantic
+     ======================================== */
+  --color-text: #1a1a1a;
+  --color-text-light: #4a4a4a;
+  --color-border: #cccccc;
+  --color-link: var(--color-primary);
+  --color-link-hover: var(--color-primary-dark);
+
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Source Sans Pro', sans-serif;
+
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.5rem;     /* 24px */
+  --font-size-2xl: 2rem;      /* 32px */
+  --font-size-3xl: 2.5rem;    /* 40px */
+
+  --line-height-base: 1.6;
+  --line-height-heading: 1.2;
+
+  /* ========================================
+     SPACING
+     ======================================== */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 2rem;      /* 32px */
+  --space-xl: 4rem;      /* 64px */
+
+  /* ========================================
+     LAYOUT
+     ======================================== */
+  --max-width: 1200px;
+  --container-padding: 1rem;
+  --header-height: 80px;
+  --border-radius: 4px;
+
+  /* ========================================
+     SHADOWS
+     ======================================== */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+  /* ========================================
+     TRANSITIONS
+     ======================================== */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ========================================
+   RESPONSIVE OVERRIDES
+   ======================================== */
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 2rem;
+  }
+}

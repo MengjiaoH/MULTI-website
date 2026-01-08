@@ -1,0 +1,81 @@
+<!-- MULTI Research Group Content -->
+<!-- This file contains the main content sections to be embedded in WordPress -->
+
+<!-- Group Introduction -->
+<section class="section section--intro" aria-label="Group Introduction">
+  <div class="container">
+    <h1 id="group-name"><!-- Loaded from group.json --></h1>
+    <p id="group-intro"><!-- Loaded from group.json --></p>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section section--team" aria-label="Team Members">
+  <div class="container">
+    <h2>Team</h2>
+    <div id="team-carousel" class="team-carousel">
+      <!-- Loaded from team.json -->
+    </div>
+  </div>
+</section>
+
+<!-- Member Detail -->
+<section id="member-detail" class="section section--member-detail" aria-label="Team Member Details" hidden>
+  <div class="container">
+    <article class="member-detail-card">
+      <!-- Research banner -->
+      <div class="member-detail__banner">
+        <img id="member-banner" src="" alt="">
+      </div>
+
+      <!-- Member info -->
+      <div class="member-detail__content">
+        <div class="member-detail__header">
+          <img id="member-photo" class="member-detail__photo" src="" alt="">
+          <div class="member-detail__info">
+            <h2 id="member-name" class="member-detail__name"></h2>
+            <ul id="member-titles" class="member-detail__titles"></ul>
+            <div id="member-contact" class="member-detail__contact"></div>
+          </div>
+        </div>
+
+        <p id="member-background" class="member-detail__background"></p>
+
+        <div class="member-detail__interests">
+          <h3>Research Interests</h3>
+          <ul id="member-interests"></ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Publications -->
+<section class="section section--publications" aria-label="Publications">
+  <div class="container">
+    <h2>Publications</h2>
+
+    <!-- Filter indicator -->
+    <div id="filter-indicator" class="filter-indicator" hidden>
+      <span id="filter-text"></span>
+      <button id="clear-filter" class="btn btn--text">Clear filter</button>
+    </div>
+
+    <!-- Search -->
+    <div class="search-box">
+      <label for="search-input" class="sr-only">Search publications</label>
+      <input type="search" id="search-input" placeholder="Search publications...">
+    </div>
+
+    <!-- Results count -->
+    <p id="results-count" class="results-count" aria-live="polite"></p>
+
+    <!-- Publication list -->
+    <div id="publications-list" class="publications-list">
+      <!-- Loaded from publications.bib -->
+    </div>
+  </div>
+</section>
+
+<!-- Screen reader announcements -->
+<div id="aria-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>

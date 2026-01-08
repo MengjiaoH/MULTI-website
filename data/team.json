@@ -1,0 +1,42 @@
+{
+  "team": [
+    {
+      "id": "chris-johnson",
+      "name": "Chris R. Johnson",
+      "position": "Distinguished Professor, Group Lead",
+      "affiliation": "Scientific Computing and Imaging Institute, University of Utah",
+      "titles": [
+        "Distinguished Professor of Computer Science",
+        "Research Professor of Bioengineering",
+        "Adjunct Professor of Physics",
+        "Founding Director, Scientific Computing and Imaging Institute",
+        "Co-Director, Center for Integrative Biomedical Computing",
+        "Co-Editor, The Visualization Handbook"
+      ],
+      "email": "crj@sci.utah.edu",
+      "website": "https://users.cs.utah.edu/~crj/",
+      "photo": "images/team/ChrisJohnson1.jpg",
+      "researchBanner": "images/research/chris-johnson-banner.jpg",
+      "background": "Chris Johnson is a faculty member within and founding director of the <a href=\"http://www.sci.utah.edu\">Scientific Computing and Imaging (SCI) Institute</a> at the University of Utah where he is a Distinguished Professor of Computer Science and holds faculty appointments in the Departments of Physics and Bioengineering. His research interests are in the areas of scientific computing and scientific visualization. With Professor <a href=\"https://sci.utah.edu/people/macleod/\">Rob MacLeod</a>, Dr. Johnson founded the SCI research group in 1992, which has since grown to become the SCI Institute employing over 200 faculty, staff and students. Professor Johnson directed SCI until 2018. Professor Johnson serves on several international journal editorial boards, as well as on advisory boards to several national and international research centers. Professor Johnson was awarded a Young Investigator's (FIRST) Award from the NIH in 1992, the NSF National Young Investigator (NYI) Award in 1994, and the <a href=\"http://www.cs.utah.edu/~crj/pff.html\">NSF Presidential Faculty Fellow (PFF)</a> award from President Clinton in 1995. In 1996 he received a <a href=\"https://www.krellinst.org/csgf/\">DOE Computational Science Award</a> and in 1997 received the <a href=\"https://ulink.utah.edu/s/1077/images/editor_documents/past_par_excellence_award_winners_-_1982-2015.pdf\"><em>Par Excellence Award</em></a> from the <a href=\"https://ulink.utah.edu/s/1077/23/home.aspx\">University of Utah Alumni Association</a> and the Presidential Teaching Scholar Award. In 1999, Professor Johnson was Awarded the <a href=\"https://business.utah.gov/innovation/governors-science-medals/\">Governor's Medal for Science and Technology</a> from Governor Michael Leavitt. In 2003 he received the Distinguished Professor Award from the University of Utah. In 2004 he was elected a Fellow of the <a href=\"http://www.aimbe.org/\">American Institute for Medical and Biological Engineering</a>, 2005 he was elected a Fellow of the <a href=\"http://www.aaas.org\">American Association for the Advancement of Science</a>, in 2009 he was elected a Fellow of the <a href=\"https://www.siam.org/programs-initiatives/prizes-awards/fellows-program/fellows-directory/?_page=1&amp;keywords=\">Society for Industrial and Applied Mathematics (SIAM)</a> and received the <a href=\"https://sci.utah.edu/johnson-cyber-pioneer/\">Utah Cyber Pioneer Award</a>. In 2010 Professor Johnson received the <a href=\"https://rosenblattprize.utah.edu/recipients/\">Rosenblatt Award</a> from the University of Utah and the <a href=\"https://tc.computer.org/vgtc/awards/visualization-technical-awards/\">IEEE Visualization Career Award</a>. In 2012 Professor Johnson received the <a href=\"https://sci.utah.edu/babbage/\">IEEE CS Charles Babbage Award</a> and in 2013 Professor Johnson received the <a href=\"https://sci.utah.edu/johnson-fernbach/\">IEEE Sidney Fernbach Award</a>. In 2014, Professor Johnson was elected an <a href=\"https://sci.utah.edu/crj-ross-ieeefellows/\">IEEE Fellow</a> and in 2019 he was inducted into the <a href=\"https://tc.computer.org/vgtc/awards/visualization-academy/\">IEEE Visualization Academy</a>. In 2020, Professor Johnson received the <a href=\"https://sci.utah.edu/johnson-leonardo/\">Leonardo Award</a>.",
+      "researchInterests": ["Scientific Computing", "Scientific Visualization", "Uncertainty Visualization", "Inverse Problems", "Adaptive methods", "Problem solving environments", "Biomedical computing", "Computational fields"],
+      "authorVariants": ["C. R. Johnson", "Chris R. Johnson", "Chris Johnson"]
+    },
+    {
+      "id": "tushar-athawale",
+      "name": "Tushar M. Athawale",
+      "position": "Research Scientist",
+      "affiliation": "Oak Ridge National Laboratory",
+      "titles": [
+        "Research Scientist, Visualization Group, Oak Ridge National Laboratory",
+        "Joint Faculty Assistant Professor, EECS, University of Tennessee, Knoxville"
+      ],
+      "email": "athawaletm@ornl.gov",
+      "website": "https://tusharathawale.info/",
+      "photo": "images/team/tushar-athawale.jpg",
+      "researchBanner": "images/research/tushar-athawale-banner.png",
+      "background": "Tushar Athawale is a Research Scientist in the Visualization Group at Oak Ridge National Laboratory. He holds the position of Joint Faculty Assistant Professor in Electrical Engineering and Computer Science (EECS) Department of the University of Tennessee, Knoxville. He received M.S. and Ph.D. degrees in computer science from the University of Florida in 2014 and 2015, respectively. Before joining ORNL, he was Dr. Chris Johnson's postdoctoral fellow at the SCI Institute. He currently serves as the Associate Editor for the IEEE Transactions on Visualization and Computer Graphics journal and a program chair for the IEEE VIS 2026 conference. He received the U.S. Department of Energy's Early Career Research Award in 2025.",
+      "researchInterests": ["Uncertainty Visualization", "Large-scale visualization", "Statistics and topological data analysis", "High-performance computing"],
+      "authorVariants": ["T. M. Athawale", "Tushar M. Athawale", "Tushar Athawale", "T. Athawale"]
+    }
+  ]
+}

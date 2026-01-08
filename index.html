@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MULTI Research Group | SCI Institute | University of Utah</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header" role="banner" style="background: #000;">
+    <div class="container">
+      <p style="margin: 0; padding: 1rem 0; color: #999;">Local test header. Replace with SCI template at deployment.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" role="main">
+    <!-- Content loaded from content.html -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p style="margin: 0; padding: 1rem 0; color: #999;">Local test footer. Replace with SCI template at deployment.</p>
+    </div>
+  </footer>
+
+  <!-- Screen reader announcements -->
+  <div id="aria-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!-- Main JavaScript -->
+  <script src="js/main.js"></script>
+
+  <!-- Load content and initialize -->
+  <script>
+    $(document).ready(function() {
+      $('#main').load('content.html', function(response, status, xhr) {
+        if (status === 'error') {
+          console.error('Failed to load content.html:', xhr.status, xhr.statusText);
+          $('#main').html('<p class="error-message">Failed to load content. Please refresh.</p>');
+        } else {
+          MULTI.init();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
