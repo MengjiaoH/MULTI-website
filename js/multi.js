@@ -399,11 +399,11 @@ const MULTI = {
         const scrollLeft = $container.scrollLeft();
 
         // If scrolled into prepended clones, jump to end of originals
-        if (scrollLeft < step) {
+        if (scrollLeft < step / 2) {
           $container.scrollLeft(scrollLeft + setWidth);
         }
         // If scrolled into appended clones, jump to start of originals
-        else if (scrollLeft >= setWidth + setWidth - step) {
+        else if (scrollLeft > setWidth + setWidth - step / 2) {
           $container.scrollLeft(scrollLeft - setWidth);
         }
       }, 50);
