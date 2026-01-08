@@ -16,6 +16,7 @@ const MULTI = {
     carouselIndex: 0,
     carouselStep: 0,
     carouselSetWidth: 0,
+    carouselAutoScrolling: false,
     teamView: 'carousel'  // 'carousel' or 'list'
   },
 
@@ -393,6 +394,9 @@ const MULTI = {
     // Handle manual scroll for infinite looping
     let scrollTimeout;
     $container.off('scroll.carousel').on('scroll.carousel', function() {
+      // Skip if auto-scrolling is in progress
+      if (self.state.carouselAutoScrolling) return;
+
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(function() {
         const scrollLeft = $container.scrollLeft();
@@ -427,6 +431,9 @@ const MULTI = {
       // Target is offset by setWidth because of prepended clones
       const targetScroll = setWidth + (self.state.carouselIndex * step);
 
+      // Mark auto-scrolling in progress
+      self.state.carouselAutoScrolling = true;
+
       // Smooth animate to next card
       $container.stop(true).animate({ scrollLeft: targetScroll }, self.CAROUSEL_TRANSITION, 'swing', function() {
         // When we've scrolled past all original cards, reset instantly
@@ -434,6 +441,8 @@ const MULTI = {
           self.state.carouselIndex = 0;
           $container.scrollLeft(setWidth);
         }
+        // Mark auto-scrolling complete
+        self.state.carouselAutoScrolling = false;
         // Schedule next scroll after pause
         self.state.carouselTimer = setTimeout(scrollNext, self.CAROUSEL_PAUSE);
       });
@@ -463,6 +472,7 @@ const MULTI = {
       clearTimeout(this.state.carouselTimer);
       this.state.carouselTimer = null;
     }
+    this.state.carouselAutoScrolling = false;
   },
 
   renderPublications: function() {
