@@ -116,11 +116,12 @@
       "name": "Mengjiao Han",
       "position": "Postdoctoral Researcher",
       "affiliation": "Argonne National Laboratory",
+      "photo": "images/team/Mengjiao-headshot.jpg",
       "titles": [
         "Postdoctoral Researcher, Argonne Leadership Computing Facility, Argonne National Laboratory"
       ],
-      "background":"Mengjiao Han is a Postdoctoral Researcher at the Argonne Leadership Computing Facility. She received her M.S. in Computer Science from the University of Delaware and joined Chris’s group in 2016 as a Ph.D. student.
-Her research focuses on scientific visualization using deep learning, with particular interests in flow field and uncertainty visualization, high-performance computing, and 3D Gaussian splatting for scientific data.",
+      "background":"Mengjiao Han is a Postdoctoral Researcher at the Argonne Leadership Computing Facility. She received her M.S. in Computer Science from the University of Delaware and joined Chris’s group in 2016 as a Ph.D. student. Her research focuses on scientific visualization using deep learning, with particular interests in flow field and uncertainty visualization, high-performance computing, and 3D Gaussian splatting for scientific data.",
+      "researchBanner": "images/research/Mengjiao-Han-banner.png",
       "researchInterests": [
         "Scientific Visualization",
         "Deep Learning",
